@@ -1,0 +1,48 @@
+<h1>Them books</h1>
+<div>
+<%= link_to "Profile Page", profile_pages_path%>
+</div>
+<%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
+
+<% if flash.any? %>
+  <div class="flash">
+    <div class="container">
+      <li>
+        <%= flash[:notice]%>
+      </li>
+        <br>
+    </div>
+  </div>
+<%end%>
+
+<div>
+  <br>
+    <%= link_to "Submit a Book", new_book_path%>
+  <br>
+  </br>
+</div>
+<%if @books%>
+  <% @books.each do |q| %>
+    <div class = "field">
+      <%= "Book: " %>
+        <%= link_to q.title, book_path(q) %>
+    </div>
+    <div>
+      <%= "Description: " %>
+      <li><%= q.description %></li>
+      <%= link_to "#{q.url}", "http://#{q.url}" %>
+    </div>
+      <%if q.user.astronaut == true %>
+        <%="Made by an astronaut."%>
+      <%else%>
+        <%="Made by a candidate."%>
+      <%end%>
+    <br>
+      <%if current_user.id == q.user.id%>
+        <%= form_for q, method: :delete do |f| %>
+          <%= f.submit "Delete Book" %>
+        <%end%>
+      <%end%>
+    </br>
+  <%end%>
+<%end%>

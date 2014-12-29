@@ -1,0 +1,28 @@
+<% if flash.any? %>
+  <div class="flash">
+    <div class="container">
+      <li>
+        <%= flash[:notice]%>
+      </li>
+    </div>
+  </div>
+<% end %>
+
+<div>&nbsp;</div>
+  <%= form_for [@book, @reviews] do |z| %>
+    <div>
+      <%= z.label :description%>
+      <div>&nbsp;</div>
+      <%= z.text_area :description, :size=> "20x10"%>
+    </div>
+     <div>
+      <%= "Posting as: "%>
+      <%=current_user.email%>
+    </div>
+    <div>
+      <%= z.submit  "Submit"%>
+    <div>
+  <%end%>
+</br>
+
+<%=link_to "Go Back", book_path(id: @book.id)%>

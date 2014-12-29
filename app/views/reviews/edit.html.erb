@@ -1,0 +1,19 @@
+<body>
+  <%= form_for [@book, @review], method: :patch do |f| %>
+    <div>
+      <%= f. label :description %>
+    </div>
+        <%= f. text_area :description, size: "40x10" %>
+    <div>
+      <%= f.submit  "Submit", :name => "edit" %>
+    </div>
+  <%end%>
+</body>
+<br>
+
+<%= form_for [@book, @review], method: :delete do |r| %>
+  <%= r.submit "Delete Review", :name => "delete" %>
+<%end%>
+
+
+<%#=link_to "Go Back", book_path(id: @book.id)%>

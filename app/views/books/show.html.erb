@@ -1,0 +1,54 @@
+<%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
+
+<% if flash.any? %>
+  <div class="flash">
+    <div class="container">
+      <li>
+        <%=flash[:notice]%>
+      </li>
+    </div>
+  </div>
+<% end %>
+
+<h1>
+  <%=@book.title %>
+</h1>
+<h2><%="Submitted by: " %>
+<%=@book.user.email%>
+</h2>
+  <%=link_to "Review the book", new_book_review_path(book_id: params[:id])%>
+<div>&nbsp;</div>
+
+<body>
+
+<%=@book.description%>
+
+    <%if @reviews%>
+      <%@reviews.each do |a|%>
+      <div>&nbsp;</div>
+      <li><%="Review: "%><%=a.description%></li>
+
+      <%if a.book.user.astronaut == true %>
+        <%="Posted by an astronaut"%>
+      <%else%>
+        <%="Posted by a candidate"%>
+      <%end%>
+
+        <%if current_user.id == a.user_id%>
+         <%=link_to "Edit Review", edit_book_review_path(book_id: @book.id, id: a.id)%>
+          <%= form_for [@book, a], method: :delete do |r| %>
+            <%= r.submit "Delete Review"%>
+          <%end%>
+        <%end%>
+      <%end%>
+    <%end%>
+
+  <div>&nbsp;</div>
+    <%=link_to "Go Back", books_path%>
+  <div>&nbsp;</div>
+    <%if "#{current_user.id}" == "#{@book.user_id}"%>
+      <%= form_for @book, method: :delete do |f| %>
+        <%= f.submit "Delete Book" %>
+      <%end%>
+    <%end%>
+</body>

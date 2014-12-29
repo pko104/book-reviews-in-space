@@ -1,0 +1,16 @@
+
+<%#current_user.save%>
+
+<%if current_user.astronaut == true%>
+<%current_user.astronaut = false%>
+<%current_user.save%>
+<h1><%="You have landed."%></h1>
+<%else%>
+<%current_user.astronaut = true%>
+<%current_user.save%>
+<h1><%="You have launched!"%></h1>
+<%end%>
+
+<%=link_to "Home", books_path%>
+
+
