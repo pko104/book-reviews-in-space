@@ -16,15 +16,11 @@
 <br>
 </br>
 <div>
-  <%if current_user.astronaut == false%>
-    <%="You are a candidate do you want to want to be an astronaut?"%>
-         <%= link_to "LAUNCH", profile_page_path(1) %>
-  <%#end%>
-</div>
-<div>
-  <%#if current_user.astronaut == true%>
-  <%else%>
+  <%if current_user.astronaut == true%>
     <%="You are an astronaut do you want to want to be an candidate?"%>
-         <%= link_to "LAND", profile_page_path(2) %>
+      <%= link_to "LAND", profile_page_path(2) %>
+  <%else%>
+    <%="You are a candidate do you want to want to be an astronaut?"%>
+      <%= link_to "LAUNCH", profile_page_path(1) %>
   <%end%>
 </div>
