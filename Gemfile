@@ -31,11 +31,13 @@ gem 'devise'
 gem 'omniauth'
 gem 'omniauth-digitalocean'
 
-# Use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
+gem 'pry-rails'
 
-# Use unicorn as the app server
-# gem 'unicorn'
+group :development, :test do
+  gem 'rspec-rails'
+  gem 'capybara'
+  gem 'launchy'
+end
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

@@ -24,7 +24,7 @@ before_action :authenticate_user!
 
   def show
     @book = Book.find(params[:id])
-    @reviews = Review.order('created_at').where(book_id: params[:id])
+    @reviews = Review.order('created_at').where(book_id: @book.id)
   end
 
   def destroy

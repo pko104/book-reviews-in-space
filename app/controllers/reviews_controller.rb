@@ -18,11 +18,12 @@ before_action :authenticate_user!
   end
 
   def create
-    #@user = User.all
-    @book = Book.find_by(params[:id])
+    @users = User.all
+    @book = Book.find(params[:book_id])
     @review = Review.new(review_params)
     @review.user_id = current_user.id
     @review.book_id = @book.id
+
     if @review.save
     redirect_to book_path(id: @book.id), notice: "Your Review was submitted."
     else
@@ -32,7 +33,7 @@ before_action :authenticate_user!
 
   def new
     @users = User.all
-    @book = Book.find_by(params[:id])
+    @book = Book.find(params[:book_id])
     @reviews = Review.new
   end
 

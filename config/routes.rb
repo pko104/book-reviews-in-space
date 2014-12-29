@@ -11,8 +11,9 @@ Rails.application.routes.draw do
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
   resources :books do
-    resources :reviews, only: [:create, :edit, :update, :new, :destroy]
+    resources :reviews, only: [:create, :edit, :update, :new, :destroy] do
     resources :users, only: [:show, :index]
+  end
   end
 
   resources :profile_pages, only: [:show, :index]

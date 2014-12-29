@@ -28,11 +28,13 @@
       <div>&nbsp;</div>
       <li><%="Review: "%><%=a.description%></li>
 
+    <div>
       <%if a.book.user.astronaut == true %>
         <%="Posted by an astronaut"%>
       <%else%>
         <%="Posted by a candidate"%>
       <%end%>
+    </div>
 
         <%if current_user.id == a.user_id%>
          <%=link_to "Edit Review", edit_book_review_path(book_id: @book.id, id: a.id)%>
